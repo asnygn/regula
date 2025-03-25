@@ -31,7 +31,7 @@ export const useFaceCapture = () => {
           const config = new InitConfig();
           config.license = license;
           console.log('config', config);
-          FaceSDK.initialize(null, initFaceSdk, (_e: any) => {});
+          FaceSDK.initialize(config, initFaceSdk, (_e: any) => {});
         })
         .catch(_ => {
           console.log('license error');
