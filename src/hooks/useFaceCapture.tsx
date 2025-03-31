@@ -31,6 +31,12 @@ export const useFaceCapture = () => {
           const config = new InitConfig();
           config.license = license;
           console.log('config', config);
+          FaceSDK.setServiceUrl(
+            'https://uat-face-sdk.ayainnovation.com',
+            res => {
+              console.log(res);
+            },
+          );
           FaceSDK.initialize(config, initFaceSdk, (_e: any) => {});
         })
         .catch(_ => {
@@ -43,8 +49,8 @@ export const useFaceCapture = () => {
     var response = InitResponse.fromJson(JSON.parse(json));
     console.log('response', response);
     if (!response!.success) {
-      console.log(response!.error!.code);
-      console.log(response!.error!.message);
+      // console.log(response!.error!.code);
+      // console.log(response!.error!.message);
     } else {
       console.log('Init complete');
     }
@@ -55,7 +61,7 @@ export const useFaceCapture = () => {
       {skipStep: [LivenessSkipStep.ONBOARDING_STEP]},
       (json: string) => {
         var response = LivenessResponse.fromJson(JSON.parse(json))!;
-        console.log(response);
+        console.log('response', response);
       },
       _e => {},
     );
